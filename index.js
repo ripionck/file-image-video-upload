@@ -1,6 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
+const morgan = require("morgan");
+
 const app = express();
 
 const PORT = process.env.PORT || 3001;
@@ -44,6 +46,9 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+//morgan middleware
+app.use(morgan("dev"));
 
 //get
 app.get("/register", (req, res) => {
